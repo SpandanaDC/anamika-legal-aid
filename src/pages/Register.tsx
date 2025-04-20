@@ -9,6 +9,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
+import { 
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 
 const Register = () => {
   const { register, isAuthenticated } = useAuth();
@@ -22,6 +30,7 @@ const Register = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    role: 'citizen', // Default role
   });
   
   const [loading, setLoading] = useState(false);
@@ -35,6 +44,10 @@ const Register = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleRoleChange = (value: string) => {
+    setFormData(prev => ({ ...prev, role: value }));
   };
 
   const handleRegister = async (e: React.FormEvent) => {
@@ -57,6 +70,7 @@ const Register = () => {
         age: parseInt(formData.age),
         email: formData.email,
         password: formData.password,
+        role: formData.role,
       });
       
       toast({
@@ -90,6 +104,25 @@ const Register = () => {
               </div>
               
               <form onSubmit={handleRegister} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="role">{translate('role') || 'User Role'}</Label>
+                  <Select
+                    value={formData.role}
+                    onValueChange={handleRoleChange}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select your role" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="student">Student</SelectItem>
+                        <SelectItem value="professional">Professional</SelectItem>
+                        <SelectItem value="citizen">Citizen / Senior</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="name">{translate('fullName')}</Label>
