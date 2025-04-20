@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Navbar } from '@/components/Navbar';
@@ -8,6 +8,7 @@ import { Footer } from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 
 const EducateYourself = () => {
   const { isAuthenticated } = useAuth();
@@ -97,12 +98,24 @@ const EducateYourself = () => {
       <Navbar />
       
       <main className="flex-grow pt-16">
-        {/* Header */}
+        {/* Header with Back Button */}
         <section className="gradient-bg text-white py-12 px-4">
           <div className="container mx-auto">
-            <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-              {translate('educateYourself')}
-            </h1>
+            <div className="flex items-center gap-4 mb-6">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:bg-white/20"
+                asChild
+              >
+                <Link to="/home">
+                  <ArrowLeft className="h-6 w-6" />
+                </Link>
+              </Button>
+              <h1 className="text-3xl md:text-4xl font-serif font-bold">
+                {translate('educateYourself')}
+              </h1>
+            </div>
             <p className="text-xl max-w-3xl">
               Expand your legal knowledge with our educational resources. Learn about different aspects of Indian law through interactive content.
             </p>

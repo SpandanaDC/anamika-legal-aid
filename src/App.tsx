@@ -13,6 +13,7 @@ import EducateYourself from "./pages/EducateYourself";
 import SeniorCitizenHelp from "./pages/SeniorCitizenHelp";
 import LegalAid from "./pages/LegalAid";
 import Anamika from "./pages/Anamika";
+import Subscription from "./pages/Subscription";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
               <Route path="/senior-citizen-help" element={<SeniorCitizenHelp />} />
               <Route path="/legal-aid" element={<LegalAid />} />
               <Route path="/anamika" element={<Anamika />} />
+              <Route path="/subscription" element={<Subscription />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
