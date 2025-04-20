@@ -27,7 +27,7 @@ const Subscription = () => {
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <SubscriptionCard 
-                title="Basic"
+                type="basic"
                 price="₹99"
                 features={[
                   "10 Anamika chatbot accesses",
@@ -35,16 +35,16 @@ const Subscription = () => {
                 ]}
               />
               <SubscriptionCard 
-                title="Premium"
+                type="premium"
                 price="₹299"
                 features={[
                   "100 Anamika accesses",
                   "Unlimited Legal Aid access"
                 ]}
-                highlighted={true}
+                isPopular={true}
               />
               <SubscriptionCard 
-                title="Elite"
+                type="elite"
                 price="₹499"
                 features={[
                   "Unlimited access to all features"
