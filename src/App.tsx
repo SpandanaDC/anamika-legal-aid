@@ -14,6 +14,7 @@ import SeniorCitizenHelp from "./pages/SeniorCitizenHelp";
 import LegalAid from "./pages/LegalAid";
 import Anamika from "./pages/Anamika";
 import Subscription from "./pages/Subscription";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
               <Route path="/legal-aid" element={<LegalAid />} />
               <Route path="/anamika" element={<Anamika />} />
               <Route path="/subscription" element={<Subscription />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

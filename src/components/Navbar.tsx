@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSelector } from './LanguageSelector';
@@ -17,6 +16,7 @@ export function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
   const { translate } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="w-full py-4 bg-white/80 backdrop-blur-md shadow-sm fixed top-0 z-50">
@@ -37,7 +37,10 @@ export function Navbar() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem className="cursor-pointer">
+                  <DropdownMenuItem 
+                    className="cursor-pointer"
+                    onClick={() => navigate('/profile')}
+                  >
                     <User className="mr-2 h-4 w-4" />
                     <span>{translate('profile')}</span>
                   </DropdownMenuItem>
@@ -77,7 +80,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden absolute top-16 right-0 left-0 bg-white shadow-md z-50 p-4">
           <div className="flex flex-col gap-2">
@@ -85,7 +87,14 @@ export function Navbar() {
             
             {isAuthenticated ? (
               <>
-                <Button variant="ghost" className="justify-start">
+                <Button 
+                  variant="ghost" 
+                  className="justify-start"
+                  onClick={() => {
+                    navigate('/profile');
+                    setIsMenuOpen(false);
+                  }}
+                >
                   <User className="mr-2 h-4 w-4" />
                   <span>{translate('profile')}</span>
                 </Button>
